@@ -4,12 +4,11 @@
 # @Version:
 # @Author: BaiYiZhuo
 # @Date: 2023-09-14 15:40:23
-# @LastEditTime: 2023-09-14 16:10:57
+# @LastEditTime: 2023-09-14 16:22:43
 ###
 for dir in */; do
-    tempDir=$(pwd)
-    echo "将要处理  $tempDir"
-    cd ./$dir || exit
+    cd "$dir"
+    echo "将要处理  $(pwd)"
     dir=${dir%*/}
     echo "Building Docker image: $dir"
     tag=ghcr.io/baiyz0825/common-utils/$dir:latest
