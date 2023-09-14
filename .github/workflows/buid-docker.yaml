@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
   issues: write
   checks: write
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,8 +26,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set up temporary directory
+        run: |
+          mkdir -p ${{ github.workspace }}/tmp
+          echo ${{ github.workspace }}/tmp > run.log
+
       - name: Build and push Docker images
         run: |
           cd docker
           chmod +x build-and-push.sh
-          ./build-and-push.sh
+          script_output=$(bash ./build-and-push.sh 2>&1)
+          echo "$script_output" > ${{ github.workspace }}/tmp/run.log
+
+      - name: Display script output
+        run: |
+          cat ${{ github.workspace }}/tmp/run.log
+          rm -rf /tmp/run.log
