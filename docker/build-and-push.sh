@@ -4,9 +4,10 @@
 # @Version:
 # @Author: BaiYiZhuo
 # @Date: 2023-09-14 15:40:23
-# @LastEditTime: 2023-09-14 16:07:03
+# @LastEditTime: 2023-09-14 16:08:27
 ###
 for dir in */; do
+    cd $dir || exit
     dir=${dir%*/}
     echo "Building Docker image: $dir"
     tag=ghcr.io/baiyz0825/common-utils/$dir:latest
@@ -23,4 +24,5 @@ for dir in */; do
     else
         echo "Failed to build Docker image $tag"
     fi
+    cd ../
 done
