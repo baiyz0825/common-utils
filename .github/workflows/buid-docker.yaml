@@ -37,8 +37,7 @@ jobs:
         run: |
           cd docker
           chmod +x build-and-push.sh
-          script_output=$(bash ./build-and-push.sh 2>&1)
-          echo "$script_output" > ${{ github.workspace }}/tmp/run.log
+          bash ./build-and-push.sh | tee ${{ github.workspace }}/tmp/run.log
 
       - name: Display script output
         run: |
