@@ -39,7 +39,7 @@ jobs:
           chmod +x build-and-push.sh
           bash ./build-and-push.sh | tee ${{ github.workspace }}/tmp/run.log
 
-      - name: Display script output
-        run: |
-          cat ${{ github.workspace }}/tmp/run.log
-          rm -rf /tmp/run.log
+      # - name: Display script output
+      #   run: |
+      #     cat ${{ github.workspace }}/tmp/run.log
+      #     rm -rf /tmp/run.log
