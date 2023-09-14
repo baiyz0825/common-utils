@@ -15,8 +15,8 @@ for dir in */; do
     echo "Building Docker image Tag is: $tag"
     docker build -t $tag -f ./Dockerfile .
     if [ $? -eq 0 ]; then
-        echo "Docker image $dir built successfully"
-        echo "Pushing Docker image: $dir"
+        echo "Docker image $tag built successfully"
+        echo "Pushing Docker image: $tag"
         docker push $tag
         if [ $? -eq 0 ]; then
             echo "Docker image $tag pushed successfully"
