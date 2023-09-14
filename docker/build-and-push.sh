@@ -4,9 +4,8 @@
 # @Version:
 # @Author: BaiYiZhuo
 # @Date: 2023-09-14 15:40:23
-# @LastEditTime: 2023-09-14 15:58:01
+# @LastEditTime: 2023-09-14 16:07:03
 ###
-cd docker || exit
 for dir in */; do
     dir=${dir%*/}
     echo "Building Docker image: $dir"
