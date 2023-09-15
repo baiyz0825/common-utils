@@ -28,7 +28,8 @@ docker run -d \
   -e CERT_NAME=your_cert_name \
   -e DNS_PROVIDER=your_dns_provider \
   -e DOMAIN_NAME=domain_name \
-  -v ./你的配置文件路径/:/etc/nginx/  \
+  -v ./你的vhost配置/:/etc/nginx/vhost  \
+  -v ./你的cert配置/:/etc/nginx/cert  \
   -p 80:80 \
   -p 443:443 \
   ghcr.io/baiyz0825/docker-project/nginx:latest
@@ -44,7 +45,8 @@ services:
       - DNS_PROVIDER=your_dns_provider
       - DOMAIN_NAME=domain_name
     volumes:
-      - ./你的配置文件路径/:/etc/nginx      
+      - ./你的vhost配置/:/etc/nginx/vhost
+      - ./你的cert配置/:/etc/nginx/cert       
     ports:
       - 80:80
       - 443:443
