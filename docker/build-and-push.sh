@@ -10,7 +10,7 @@ for dir in */; do
     cd "$dir"
     echo "将要处理  $(pwd)"
     dir=${dir%*/}
-    tag1=byz0825/common-utils/$dir:latest
+    tag1=byz0825/$dir:latest
     tag2=ghcr.io/baiyz0825/common-utils/$dir:latest
     echo "Building Docker image path : $dir"
     echo "Building Docker image Tag is: $tag1,$tag2"
@@ -20,7 +20,7 @@ for dir in */; do
     if [ $? -eq 0 ]; then
         echo "Docker image $tag1,$tag2 built successfully"
         echo "Pushing Docker image: $tag1,$tag2"
-        docker push byz0825/common-utils/$dir:latest && docker push ghcr.io/baiyz0825/common-utils/$dir:latest
+        docker push $tag1 && docker push $tag2
         if [ $? -eq 0 ]; then
             echo "Docker image $tag1,$tag2 pushed successfully"
         else
