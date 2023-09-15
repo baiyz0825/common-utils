@@ -14,8 +14,8 @@ for dir in */; do
     tag2=ghcr.io/baiyz0825/common-utils/$dir:latest
     echo "Building Docker image path : $dir"
     echo "Building Docker image Tag is: $tag1,$tag2"
-    docker tag $dir $tag1 && docker tag $dir $tag2
-    docker build  -f ./Dockerfile .
+    docker build -t $tag1 -f ./Dockerfile .
+    docker tag $tag1 $tag2
     if [ $? -eq 0 ]; then
         echo "Docker image $tag1,$tag2 built successfully"
         echo "Pushing Docker image: $tag1,$tag2"
