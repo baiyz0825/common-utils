@@ -11,7 +11,8 @@ RUN curl https://get.acme.sh | sh
 
 COPY conf/nginx.conf /etc/nginx/
 RUN mkdir -p /etc/nginx/cert && \
-    mkdir -p /etc/nginx/vhost
+    mkdir -p /etc/nginx/vhost && \
+    mkdir -p /etc/nginx/logs
 
 # 拷贝执行脚本
 COPY ./start.sh /usr/local/app/
