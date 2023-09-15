@@ -9,8 +9,9 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list &&
 # 安装 acme.sh
 RUN curl https://get.acme.sh | sh
 
-COPY conf/ /etc/nginx/
-COPY cert/ /etc/nginx/cert
+COPY conf/nginx.conf /etc/nginx/
+RUN mkdir -p /etc/nginx/cert && \
+    mkdir -p /etc/nginx/vhost
 
 # 拷贝执行脚本
 COPY ./start.sh /usr/local/app/
