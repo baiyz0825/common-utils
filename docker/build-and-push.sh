@@ -10,21 +10,24 @@ for dir in */; do
     cd "$dir"
     echo "将要处理  $(pwd)"
     dir=${dir%*/}
+    tag1=byz0825/common-utils/$dir:latest
+    tag2=ghcr.io/baiyz0825/common-utils/$dir:latest
     echo "Building Docker image path : $dir"
-    tag=ghcr.io/baiyz0825/common-utils/$dir:latest
-    echo "Building Docker image Tag is: $tag"
-    docker build -t $tag -f ./Dockerfile .
+    echo "Building Docker image Tag is: $tag1,$tag2"
+    docker tag $dir $tag1
+    docker tag $dir $tag2
+    docker build  -f ./Dockerfile .
     if [ $? -eq 0 ]; then
-        echo "Docker image $tag built successfully"
-        echo "Pushing Docker image: $tag"
-        docker push $tag
+        echo "Docker image $tag1,$tag2 built successfully"
+        echo "Pushing Docker image: $tag1,$tag2"
+        docker push byz0825/common-utils/$dir:latest && docker push ghcr.io/baiyz0825/common-utils/$dir:latest
         if [ $? -eq 0 ]; then
-            echo "Docker image $tag pushed successfully"
+            echo "Docker image $tag1,$tag2 pushed successfully"
         else
-            echo "Failed to push Docker image $tag"
+            echo "Failed to push Docker image $tag1,$tag2"
         fi
     else
-        echo "Failed to build Docker image $tag"
+        echo "Failed to build Docker image $tag1,$tag2"
     fi
     cd ../
 done
