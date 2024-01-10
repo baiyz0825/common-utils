@@ -14,7 +14,7 @@ RUN mkdir -p /etc/nginx/cert && \
     mkdir -p /etc/nginx/vhost && \
     mkdir -p /etc/nginx/logs
 
-# 拷贝执行脚本
+# 拷贝执行脚本 执行
 COPY ./start.sh /usr/local/app/
 RUN chmod +x /usr/local/app/start.sh
 
