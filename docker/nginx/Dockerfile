@@ -1,4 +1,4 @@
-FROM nginx:stable-bullseye
+FROM nginx:1.27.0-bookworm-otel
 
 LABEL maintainer="byz0825@outlook.com"
 # 安装依赖文件
